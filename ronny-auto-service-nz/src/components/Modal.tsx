@@ -1,4 +1,3 @@
-import Form from "./Form"
 import WebcamCapture from "./WebcamCapture";
 
 const Modal = () => {

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import AddMedia from "./AddMedia";
-import Modal from "./Modal";
 
 const Hero = () => {
   return (

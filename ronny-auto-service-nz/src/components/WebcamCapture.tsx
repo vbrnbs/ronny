@@ -8,7 +8,7 @@ const videoConstraints = {
   facingMode: FACING_MODE_USER
 };
 
-const WebcamCapture = ({setFile}) => {
+const WebcamCapture = (setFile:any ) => {
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
   const webcamRef = useRef(null) as any;
   const [imgSrc, setImgSrc] = useState(null);

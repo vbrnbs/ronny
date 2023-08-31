@@ -4,7 +4,7 @@ import WebcamCapture from "./WebcamCapture";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
-const firebaseConfig = initializeApp({
+const firebaseConfig: any = {
     apiKey: "AIzaSyAyAWLSf9A3e1qQd4N-j_8_CCcSwLKrpts",
     authDomain: "ronny-nzgorge.firebaseapp.com",
     projectId: "ronny-nzgorge",
@@ -12,7 +12,7 @@ const firebaseConfig = initializeApp({
     messagingSenderId: "37839314828",
     appId: "1:37839314828:web:7b665c39aabf73934d00a9",
     measurementId: "G-HCV190EENX"
-  });
+  };
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
