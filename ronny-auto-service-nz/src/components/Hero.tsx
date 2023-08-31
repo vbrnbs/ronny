@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import AddMedia from "./AddMedia";
 import Modal from "./Modal";
 
 const Hero = () => {
@@ -19,7 +21,11 @@ const Hero = () => {
             a id nisi.
           </p>
           {/* <button className="btn btn-primary">Get Started</button> */}
-          <Modal />
+          {/* <Modal /> */}
+          <button className="btn btn-primary">
+            <Link to="/form">Book Service</Link>
+          </button>
+          {/* <AddMedia /> */}
         </div>
       </div>
     </div>

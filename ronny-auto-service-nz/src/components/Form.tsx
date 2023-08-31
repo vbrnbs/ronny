@@ -1,11 +1,18 @@
 // import Webcam from "react-webcam";
 
+import Modal from "./Modal";
+
 const Form = () => {
   return (
-    <div className="flex justify-center mt-12">
-      <div className=" max-w-xl rounded-lg p-8">
-        <form method="dialog" className="modal-box">
-           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    <div
+      className="hero min-h-screen"
+      style={{
+        backgroundImage:
+          "url(https://images.unsplash.com/photo-1625047509168-a7026f36de04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80)",
+      }}
+    >
+        <form method="dialog" className="modal-box bg-secondary text-primary">
+           {/* <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button> */}
            <h3 className="font-bold text-lg">Hello!</h3>
           <div className="relative z-0 w-full mb-6 group">
             <input
@@ -128,47 +135,22 @@ const Form = () => {
           <p className="text-center py-6">
             Please, attach photos/videos, to better understand your issue!
           </p>
-
-          <div className="flex w-full justify-center text-center cursor-pointer">
-            <div className="flex flex-col rounded-lg border p-36 items-center justify-center">
-              <svg
-                className="w-[48px] h-[48px] text-gray-800 dark:text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 18"
-              >
-                <path
-                  stroke="gray"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.2"
-                  d="M10 12.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
-                />
-                <path
-                  stroke="gray"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.2"
-                  d="M17 3h-2l-.447-.894A2 2 0 0 0 12.764 1H7.236a2 2 0 0 0-1.789 1.106L5 3H3a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a2 2 0 0 0-2-2Z"
-                />
-              </svg>
-            </div>
-          </div>
+          
+          <Modal />
+          
           <button
             type="submit"
             className="mt-12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-36 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Submit
           </button>
-          <div className="modal-action">
-            {/* if there is a button in form, it will close the modal */}
+          
+          {/* <div className="modal-action">
 
             <button className="btn">Close</button>
-          </div>
+          </div> */}
         </form>
       </div>
-    </div>
   );
 };
 

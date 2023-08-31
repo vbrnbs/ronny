@@ -1,17 +1,9 @@
-import Form from "./Form"
-import WebcamCapture from "./WebcamCapture";
 
-const Modal = () => {
+
+const PhotoButton = () => {
   return (
-    <div>
-      
-        <div className="flex w-full justify-center text-center cursor-pointer">
-            <button
-        className=""
-        onClick={() => window.my_modal_3.showModal()}
-      >
-                    <div className="flex flex-col rounded-lg border p-36 items-center justify-center">
-
+    <div className="flex w-full justify-center text-center cursor-pointer">
+            <div className="flex flex-col rounded-lg border p-36 items-center justify-center">
               <svg
                 className="w-[48px] h-[48px] text-gray-800 dark:text-white"
                 aria-hidden="true"
@@ -35,20 +27,8 @@ const Modal = () => {
                 />
               </svg>
             </div>
-              </button>
-            </div>
-          
-      
-      <dialog
-        id="my_modal_3"
-        className="modal modal-bottom sm:modal-middle text-left"
-      >
-        <WebcamCapture />
-        
-          
-      </dialog>
-    </div>
-  );
-};
+          </div>
+  )
+}
 
-export default Modal;
+export default PhotoButton
