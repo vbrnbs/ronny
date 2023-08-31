@@ -1,17 +1,32 @@
 import { useState } from "react";
-import storage from "../firebaseConfig.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import WebcamCapture from "./WebcamCapture";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+
+const firebaseConfig = initializeApp({
+    apiKey: "AIzaSyAyAWLSf9A3e1qQd4N-j_8_CCcSwLKrpts",
+    authDomain: "ronny-nzgorge.firebaseapp.com",
+    projectId: "ronny-nzgorge",
+    storageBucket: "ronny-nzgorge.appspot.com",
+    messagingSenderId: "37839314828",
+    appId: "1:37839314828:web:7b665c39aabf73934d00a9",
+    measurementId: "G-HCV190EENX"
+  });
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
  
 function AddMedia() {
     // State to store uploaded file
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState<any>(null);
  
     // progress
     const [percent, setPercent] = useState(0);
  
     // Handle file upload event and update state
-    function handleChange(event) {
+    function handleChange(event: any) {
         setFile(event.target.files[0]);
     }
  

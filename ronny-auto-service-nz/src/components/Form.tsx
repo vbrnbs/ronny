@@ -1,5 +1,6 @@
 // import Webcam from "react-webcam";
 
+import AddMedia from "./AddMedia";
 import Modal from "./Modal";
 
 const Form = () => {
@@ -135,7 +136,7 @@ const Form = () => {
           <p className="text-center py-6">
             Please, attach photos/videos, to better understand your issue!
           </p>
-          
+          <AddMedia />
           <Modal />
           
           <button
