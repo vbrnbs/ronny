@@ -4,6 +4,7 @@ import WebcamCapture from "./WebcamCapture";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
+
 const firebaseConfig: any = {
     apiKey: "AIzaSyAyAWLSf9A3e1qQd4N-j_8_CCcSwLKrpts",
     authDomain: "ronny-nzgorge.firebaseapp.com",
@@ -27,8 +28,14 @@ function AddMedia() {
  
     // Handle file upload event and update state
     function handleChange(event: any) {
-        setFile(event.target.files[0]);
+        handleSetFile(event.target.files[0]);
     }
+
+    function handleSetFile(event: any) {
+        console.log(event)
+        setFile(event);
+    }
+    
  
     const handleUpload = () => {
         if (!file) {
