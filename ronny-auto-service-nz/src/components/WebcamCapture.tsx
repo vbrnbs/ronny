@@ -35,7 +35,8 @@ const WebcamCapture = ({ setFile }: any) => {
     const saved = await base64ToJpg(imageSrc, outputPath);
     if (saved) {
       console.log(typeof outputPath)
-      setFile(outputPath);
+      console.log(imageSrc)
+      
       console.log("Image saved:", outputPath);
     } else {
       console.log("Failed to save image.");
@@ -48,11 +49,12 @@ const WebcamCapture = ({ setFile }: any) => {
     const response = await fetch(`data:image/jpeg;base64,${base64Data}`);
     if (!response.ok) return false;
 
-    // const blob = await response.blob();
+    const blob = await response.blob();
 
-    // const link = document.createElement('a');
-    // link.href = URL.createObjectURL(blob);
-    // // link.download = outputPath;
+    const link = document.createElement('a');
+    setFile(blob);
+    link.href = URL.createObjectURL(blob);
+    link.download = outputPath;
     // link.click();
 
     return true;
