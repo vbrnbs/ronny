@@ -6,13 +6,13 @@ import Modal from "./Modal";
 const Form = () => {
   return (
     <div
-      className="hero min-h-screen"
+      className="hero h-[calc(100vh-6rem)]"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1625047509168-a7026f36de04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80)",
       }}
     >
-        <form method="dialog" className="modal-box bg-secondary text-primary">
+        <form method="dialog" className="modal-box bg-secondary text-primary max-h-full">
            {/* <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button> */}
            <h3 className="font-bold text-lg">Hello!</h3>
           <div className="relative z-0 w-full mb-6 group">

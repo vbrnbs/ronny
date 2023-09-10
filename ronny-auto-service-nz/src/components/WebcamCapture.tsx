@@ -8,14 +8,10 @@ const videoConstraints = {
   facingMode: FACING_MODE_USER
 };
 
-const WebcamCapture = ({ setFile }: any) => {
+const WebcamCapture = ({ firebase, setFirebase }: any) => {
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
   const webcamRef = useRef(null) as any;
   const [imgSrc, setImgSrc] = useState(null);
-
-  const retake = () => {
-    setImgSrc(null);
-  };
 
   const handleClick = useCallback(() => {
     setFacingMode(
@@ -29,30 +25,26 @@ const WebcamCapture = ({ setFile }: any) => {
   const capture = useCallback(async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-
+    
     // Convert and save base64 image
-    const outputPath = 'captured_image.jpg';
+    const outputPath = `Reg.No-${new Date().toISOString()}${Math.random()}.jpg`;
     const saved = await base64ToJpg(imageSrc, outputPath);
     if (saved) {
-      console.log(typeof outputPath)
-      console.log(imageSrc)
-      
-      console.log("Image saved:", outputPath);
+        console.log("Image saved:", outputPath);
     } else {
-      console.log("Failed to save image.");
+        console.log("Failed to save image.");
     }
-  }, [webcamRef]);
+  }, [webcamRef, firebase]);
 
   const base64ToJpg = async (base64Text: string, outputPath: any) => {
-    // console.log("base64Text:", base64Text);
     const base64Data = base64Text.replace(/^data:image\/jpeg;base64,/, '');
     const response = await fetch(`data:image/jpeg;base64,${base64Data}`);
     if (!response.ok) return false;
 
     const blob = await response.blob();
+    setFirebase([...firebase, blob]);
 
     const link = document.createElement('a');
-    setFile(blob);
     link.href = URL.createObjectURL(blob);
     link.download = outputPath;
     // link.click();
@@ -79,16 +71,28 @@ const WebcamCapture = ({ setFile }: any) => {
 
         <div className="btn-container">
           {imgSrc ? (
-            <button onClick={retake}>Retake photo</button>
+            <div className='flex flex-col gap-2 m-2 cursor-pointer'>
+              <button onClick={capture} >add more</button>
+              
+              <button onClick={() => setFirebase([])}>delete all</button>
+            </div>
           ) : (
             <button onClick={capture}>Capture photo</button>
           )}
         </div>
+
         <div>
-          {imgSrc && (
-            <img src={imgSrc} alt="webcam" />
-          )}
+          {firebase && firebase.length}
+          {firebase && firebase.map((file: any, idx: number) => {
+            return (
+              <div key={idx}>
+                <img src={URL.createObjectURL(file)} alt="firebase" />
+                <button onClick={() => {}} >delete</button>
+              </div>
+            )
+          })}
         </div>
+        
       </div>
     </>
   );

@@ -21,29 +21,26 @@ function AddMedia() {
   // State to store uploaded file
   const [file, setFile] = useState<any>(null);
   const [photo, setPhoto] = useState(false);
+  const [firebase, setFirebase] = useState([]);
 
   // progress
   const [percent, setPercent] = useState(0);
 
   // Handle file upload event and update state
   function handleChange(event: any) {
-    handleSetFile(event.target.files[0]);
-  }
-
-  function handleSetFile(event: any) {
-    console.log(event);
-    setFile(event);
+    setFile(event.target.files[0]);
   }
 
   const handleUpload = () => {
-    if (!file) {
-      alert("Please upload an image first!");
-    }
 
-    const storageRef = ref(storage, `/files/${file.name}`);
+    
+    // if (!file) {
+    //   alert("Please upload an image first!");
+    // }
+    firebase && 
+    firebase.map((file: any) => {
+    const storageRef = ref(storage, `/files/${"Reg.No"}-${new Date().toISOString()}`);
 
-    // progress can be paused and resumed. It also exposes progress updates.
-    // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -52,27 +49,31 @@ function AddMedia() {
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-
-        // update progress
         setPercent(percent);
       },
       (err) => console.log(err),
       () => {
-        // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
         });
       }
     );
-  };
+  });
+    };
 
   return (
     <div className="">
       {photo ? (
         <div>
           <button onClick={() => setPhoto(!photo)}>cancel</button>
-          <WebcamCapture setFile={setFile} />
-          {file && <p>{percent} "% done"</p>}
+          <WebcamCapture setFirebase={setFirebase} firebase={firebase} />
+          {firebase.length > 0 && (
+            <div>
+              <button onClick={handleUpload}
+              className="bg-yellow-500 p-4">Upload to Firebase</button>
+              <p>{percent} "% done"</p>
+            </div>
+          )}
         </div>
       ) : (
         <div className="">
@@ -89,7 +90,7 @@ function AddMedia() {
             <div>
               <button onClick={handleUpload}
               className="bg-yellow-500 p-4">Upload to Firebase</button>
-              <p>{percent} "% done"</p>
+              <p>{percent}% done</p>
             </div>
           )}
         </div>
