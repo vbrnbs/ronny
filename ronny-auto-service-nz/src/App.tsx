@@ -1,16 +1,22 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from "./components/Home";
+import Form from "./components/Form";
 
 function App() {
   return (
     <>
       <Router>
         <iframe
-          className="fixed h-screen w-screen absolute left-0 top-0 -z-10"
+          className="h-screen w-screen absolute left-0 top-0 "
           src="https://web-gl-fluid-simulation-puce.vercel.app/"
         ></iframe>
         <Routes>
-          <Route path="/" element={<h1>Home</h1>}></Route>
+          <Route path="/" element={<Home />}/> 
+          
+          <Route path="/register" element={<Form />} />
+            
+    
         </Routes>
       </Router>
     </>
